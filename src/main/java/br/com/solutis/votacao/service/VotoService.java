@@ -161,17 +161,13 @@ public class VotoService {
      * @return Lista de VotoRelatorioDTO contendo vencedor por maioria simples, contagem e percentual
      * dos votos (Sim/Não) de uma pauta.
      */
-    public List<VotoRelatorioDTO> relatorioConsolidadoDosVotos(Long id) {
+    public VotoRelatorioDTO relatorioConsolidadoDosVotos(Long id) {
         sessaoService.findSessaoById(id);
-        List<VotoRelatorioDTO> resultado = new ArrayList<>();
+        VotoRelatorioDTO resultado = new VotoRelatorioDTO();
 
-        VotoRelatorioDTO votoRelatorioDTO = new VotoRelatorioDTO();
-
-        votoRelatorioDTO.setVencedor(vencedorMaioriaSimples(id));
-        votoRelatorioDTO.setTotalizador(votosComputados(id));
-        votoRelatorioDTO.setPercentual(percentualVotosComputados(id));
-
-        resultado.add(votoRelatorioDTO);
+        resultado.setVencedor(vencedorMaioriaSimples(id));
+        resultado.setTotalizador(votosComputados(id));
+        resultado.setPercentual(percentualVotosComputados(id));
 
         return resultado;
     }
